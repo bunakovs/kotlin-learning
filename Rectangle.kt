@@ -1,3 +1,5 @@
+import java.util.Random
+
 class Rectangle(val height: Int, val width: Int){
 
     val isSquare: Boolean
@@ -7,10 +9,23 @@ class Rectangle(val height: Int, val width: Int){
         get(){
             return height*width
         }
+    
+    fun createRandom() = createRandomRectangle()
+
+    fun print(){
+        println("Rectangle:\n Heigth = $height,\n Width = $width,\n Square = $isSquare,\n Area = $area")
+    }
 
 }
 
+fun createRandomRectangle(): Rectangle {
+    val random = Random()
+    return Rectangle(random.nextInt(100), random.nextInt(100))
+}
+
 fun main(args: Array<String>){
-    val r = Rectangle(10, 10)
-    println("Rectangle:\n Heigth = ${r.height},\n Width = ${r.width},\n Square = ${r.isSquare},\n Area = ${r.area}")
+    val rectangles = listOf(Rectangle(10, 10), Rectangle(2, 5), createRandomRectangle())
+    for(rectangle in rectangles){
+        rectangle.print()
+    }
 }
